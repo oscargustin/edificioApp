@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Switch Idioma y Tema</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="center-container">
+    <!-- Switch para cambiar tema -->
+    <ion-item>
+      <ion-label>Modo Oscuro</ion-label>
+      <ion-toggle [(ngModel)]="isDarkTheme" (ionChange)="toggleTheme($event)" color="primary"></ion-toggle>
+    </ion-item>
+
+    <!-- Switch para cambiar idioma -->
+    <ion-item>
+      <ion-label>Idioma: {{ isSpanish ? 'Español' : 'Inglés' }}</ion-label>
+      <ion-toggle [(ngModel)]="isSpanish" (ionChange)="toggleLanguage($event)" color="primary"></ion-toggle>
+    </ion-item>
+  </div>
+</ion-content>

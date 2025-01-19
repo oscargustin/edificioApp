@@ -1,0 +1,75 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Añadir Residente</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <form class="auth-form" [formGroup]="form" (ngSubmit)="submit()" (keypress.enter)="submit()">
+      <div class="gradient-input">
+        <ion-label>Correo</ion-label>
+        <div class="input">
+          <ion-input formControlName="email" type="email" autocomplete="email" placeholder="jhondoe@gmail.com"></ion-input>
+        </div>
+      </div>
+    
+      <div class="gradient-input">
+        <ion-label>Contraseña</ion-label>
+        <div class="input">
+          <ion-input formControlName="password" type="password" placeholder="********"></ion-input>
+        </div>
+      </div>
+    
+      <div class="gradient-input">
+        <ion-label>Nombre</ion-label>
+        <div class="input">
+          <ion-input formControlName="nombre" type="text" placeholder="Juan Pérez"></ion-input>
+        </div>
+      </div>
+    
+      <div class="gradient-input">
+        <ion-label>RUT</ion-label>
+        <div class="input">
+          <ion-input formControlName="rut" type="text" placeholder="12.345.678-9"></ion-input>
+        </div>
+      </div>
+    
+      <div class="gradient-input">
+        <ion-label>Teléfono</ion-label>
+        <div class="input">
+          <ion-input formControlName="telefono" type="tel" placeholder="+56912345678"></ion-input>
+        </div>
+      </div>
+    
+      <div class="gradient-input">
+        <ion-label>Departamento</ion-label>
+        <div class="input">
+          <ion-input formControlName="departamento" type="text" placeholder="Dpto 101"></ion-input>
+        </div>
+      </div>
+    
+      <div class="gradient-input">
+        <ion-label>Piso</ion-label>
+        <div class="input">
+          <ion-input formControlName="piso" type="number" placeholder="1"></ion-input>
+        </div>
+      </div>
+    
+      <div class="gradient-input">
+        <ion-label>Rol</ion-label>
+        <ion-select formControlName="rol" placeholder="Selecciona un rol">
+          <ion-select-option value="residente">Propietario</ion-select-option>
+          <ion-select-option value="administrador">Arrendatario</ion-select-option>
+        </ion-select>
+      </div>
+    
+      <ion-button type="submit" shape="round" color="primary">
+        Enviar
+      </ion-button>
+    </form>
+    
+    <ion-button ic shape="round" color="primary" (click)="agregarResidente()">
+      Añadir Residente
+    </ion-button>
+  </ion-card-content>
+
+</ion-card>

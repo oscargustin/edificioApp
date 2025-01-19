@@ -1,0 +1,56 @@
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">Seleccione un servicio</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="6">
+            <ion-card button (click)="selectSpace('Quincho')">
+              <ion-card-header>
+                <ion-card-title>Quincho</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                Perfecto para reuniones y asados familiares.
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6">
+            <ion-card button (click)="selectSpace('Sala de eventos')">
+              <ion-card-header>
+                <ion-card-title>Sala de eventos</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                Ideal para fiestas y reuniones grupales.
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <ion-card button (click)="selectSpace('Piscina')">
+              <ion-card-header>
+                <ion-card-title>Piscina</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                Disfruta de un día de relajación.
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col size="6">
+            <ion-card button (click)="selectSpace('Cancha deportiva')">
+              <ion-card-header>
+                <ion-card-title>Cancha deportiva</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                Reserva para actividades deportivas.
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

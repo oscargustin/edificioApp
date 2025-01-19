@@ -1,0 +1,35 @@
+
+  
+  <ion-card>
+
+
+    <ion-card-header>  
+      <ion-card-title>Muro de comunidad
+        
+  
+    </ion-card-title>
+    </ion-card-header>
+
+
+    <ion-card-content class="infinite-scroll-content">
+      <div class="scrollable-section">
+
+      <ion-list>
+        <!-- Lista dinámica de publicaciones -->
+        <ion-item *ngFor="let item of items; let i = index">
+          <ion-avatar slot="start">
+            <img [src]="item.avatar || 'https://via.placeholder.com/80'" alt="avatar" />
+          </ion-avatar>
+
+          <ion-label>
+            <h2>{{ item.titulo }}</h2>
+            <p>{{ item.descripcion }}</p>
+            <small>{{ item.fecha | date: 'fullDate' }}</small>
+          </ion-label>
+
+        </ion-item>
+      </ion-list>
+    </div>
+    </ion-card-content>
+  </ion-card>
+  

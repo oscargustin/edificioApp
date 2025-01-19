@@ -1,0 +1,83 @@
+ion-toolbar {
+    --ion-title-text-align: center;
+}
+
+
+  ion-title {
+    position: absolute; /* Posiciona el título para que no dependa de los botones */
+    left: 50%;
+    transform: translateX(-50%); /* Centra el título horizontalmente */
+    font-size: 28px; /* Opcional: ajusta el tamaño del texto del título */
+  }
+
+  ion-card{
+   height: 400px;
+   shape-margin: 30%;
+
+  }
+  ion-list{
+    shape-margin: 330%;
+  }
+  .infinite-scroll-content {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  
+  .scrollable-section {
+    max-height: 400px; /* Altura máxima del contenedor */
+    overflow-y: auto; /* Scroll solo vertical */
+  }
+  
+  ion-item {
+    --min-height: 60px; /* Reduce la altura mínima de los items */
+  }
+  
+  ion-card {
+    margin-bottom: 59px; /* Espaciado entre cards */
+    shape-margin: 30%;
+  } 
+  
+  ion-avatar img {
+    width: 40px; /* Tamaño del avatar */
+    height: 40px;
+    border-radius: 20%;
+  }
+  
+  ion-label h2 {
+    font-size: 14px; /* Tamaño de los títulos */
+    margin: 0;
+  }
+  
+  ion-label p {
+    font-size: 12px; /* Tamaño del texto de descripción */
+    margin: 0;
+  }
+  
+  ion-label small {
+    font-size: 10px; /* Tamaño de la fecha */
+    color: gray;
+  }
+  
+  ion-button{
+    font-size: 10px;
+
+  }
+
+  ion-segment-button{
+    ion-label{
+        font-size: 11px;
+        display: flex;
+        justify-content: center;
+        ;
+
+    }
+  }
+
+  .text-positive {
+    color: green;
+  }
+  
+  .text-negative {
+    color: red;
+  }

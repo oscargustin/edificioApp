@@ -1,0 +1,39 @@
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Historial de Pagos</ion-card-title>
+
+    <ion-card-subtitle>
+
+      <ion-searchbar placeholder="Buscar"  type="decimal" [debounce]="250" ></ion-searchbar>
+
+    <ion-button  shape="round"color="success">
+      Publicar
+    </ion-button>
+    <ion-button shape="round" color="success">
+      Eliminar
+    </ion-button>
+  </ion-card-subtitle>
+  </ion-card-header>
+
+
+  <ion-card-content class="infinite-scroll-content" class="ion-no-padding">
+    <div class="scrollable-section">
+    <ion-list>
+      <!-- Lista dinámica de pagos -->
+      <ion-item *ngFor="let pago of historialPagos">
+        <ion-avatar slot="start">
+          <img [src]="pago.avatarUser || 'https://via.placeholder.com/80'" alt="avatar" />
+        </ion-avatar>
+
+        <ion-label>
+          <h2>{{ pago.tituloUser }}</h2>
+          <p>{{ pago.descripcionUser }}</p>
+          <small>{{ pago.fechaUser | date: 'fullDate' }}</small>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    </div>
+  </ion-card-content>
+</ion-card>
+

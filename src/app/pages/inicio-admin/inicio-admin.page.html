@@ -1,0 +1,31 @@
+<app-header></app-header>
+
+<ion-content class="ion-padding" >
+
+  <ion-segment  [(ngModel)]="selectedTab">
+    <ion-segment-button value="muro">
+      <ion-label>Muro comunidad</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="pagos">
+      <ion-label>Historial de pagos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="addResidente">
+      <ion-label>Añadir Residente</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Renderiza los componentes dinámicamente -->
+  <ng-container *ngIf="selectedTab === 'muro'">
+    <app-muro-comunidad></app-muro-comunidad>
+  </ng-container>
+  <ng-container *ngIf="selectedTab === 'pagos'">
+<app-historico-admin></app-historico-admin>
+  </ng-container>
+  <ng-container>
+    <ng-container *ngIf="selectedTab === 'addResidente'">
+     <app-agregar-residente></app-agregar-residente>
+    </ng-container>
+  </ng-container>
+
+
+</ion-content>
