@@ -44,7 +44,26 @@ export class HistoricoAdminComponent  implements OnInit {
         descripcionUser: 'Se registró el pago de $100.000 correspondiente al gasto común del mes de noviembre.',
         fechaUser: '2024-11-25',
         avatarUser: 'https://via.placeholder.com/80?text=GC'
-      }
+      },
+      {
+        tituloUser: 'Pago realizado: Gasto común de diciembre',
+        descripcionUser: 'Se registró el pago de $100.000 correspondiente al gasto común del mes de diciembre.',
+        fechaUser: '2024-12-28',
+        avatarUser: 'https://via.placeholder.com/80?text=GC'
+      },
+      {
+        tituloUser: 'Pago realizado: Gasto común de diciembre',
+        descripcionUser: 'Se registró el pago de $100.000 correspondiente al gasto común del mes de diciembre.',
+        fechaUser: '2024-12-28',
+        avatarUser: 'https://via.placeholder.com/80?text=GC'
+      },
+      {
+        tituloUser: 'Pago realizado: Gasto común de diciembre',
+        descripcionUser: 'Se registró el pago de $100.000 correspondiente al gasto común del mes de diciembre.',
+        fechaUser: '2024-12-28',
+        avatarUser: 'https://via.placeholder.com/80?text=GC'
+      },
+      
     ];
   }
 }

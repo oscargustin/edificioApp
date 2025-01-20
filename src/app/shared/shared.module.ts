@@ -21,14 +21,17 @@ import { AgregarResidenteComponent } from './components/agregar-residente/agrega
     HistoricoAdminComponent,
     HeaderComponent,
     MuroComunidadComponent,
-    AgregarResidenteComponent
+    AgregarResidenteComponent,
+    ReactiveFormsModule,
+    RouterModule
+
   ]
   ,
   imports: [
     CommonModule,
     IonicModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule, 
     RouterModule
   ]
 })

@@ -1,23 +1,30 @@
+<ion-content>
+  <div class="d-flex-center">
+    <form class="auth-form" [formGroup]="form" (keypress.enter)="login()">
+      <div class="gradient-input">
+        <ion-label>email</ion-label>
+        <ion-input
+          formControlName="email"
+          type="email"  
+          placeholder="jhondoe@gmail.com">
+        </ion-input>
 
-<ion-content class="ion-padding">
-  <ion-text color="primary" class="ion-text-center">
-    <h1>Inicio de Sesión</h1>
-  </ion-text>
+        <div class="validators" *ngIf="form.controls.email.errors && form.controls.email.touched">
+          <div *ngIf="form.controls.email.errors?.['required']">El correo es requerido</div>
+          <div *ngIf="form.controls.email.errors?.['email']">El correo es requerido</div>
+        </div>
+      </div>
+  
+      <div class="gradient-input">
+        <ion-label>Contraseña</ion-label>
+        <ion-input formControlName="password" type="password" placeholder="********"></ion-input>
+      </div>
 
-  <form #formulario="ngForm" (ngSubmit)="onSubmit()">
-    <ion-item>
-      <ion-input label="Usuario" labelPlacement="floating" required type="text" name="usrname" [(ngModel)]="usuario.username" ></ion-input>
-  
-    </ion-item>
-    <ion-item>
-    
-      <ion-input label="Password" labelPlacement="floating" required type="password" name="pass" [(ngModel)]="usuario.password"  ></ion-input>
-    </ion-item>
-  
-      <ion-button  expand="block" color="primary" type="submit" [disabled]="formulario.invalid" [routerLink]="['/tabs/home']">
-        Login
+      <ion-button ic shape="round" (click)="login()" class="submit"  type="submit" color="primary" [disabled]="form.invalid">
+        Iniciar Sesion
       </ion-button>
-      
-  </form>
-
+</form>
+  </div>
+  
 </ion-content>
+    
