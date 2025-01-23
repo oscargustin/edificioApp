@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore,  } from '@angular/fire/compat/firestore';
 import { User, UserLogin } from 'src/models/user.model';
-
-
+import {AngularFireStorage, } from '@angular/fire/compat/storage';
+import { getFirestore,setDoc, doc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +11,12 @@ import { User, UserLogin } from 'src/models/user.model';
 export class FirebaseService {
   constructor(
     private auth: AngularFireAuth,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private storage: AngularFireStorage
   ) {}
 
+
+// ======================= AUTENTICACION ========================
   // Método para registrar un usuario
   register(user: User) {
     return this.auth.createUserWithEmailAndPassword(user.email, user.password).then(userCredential => {
@@ -52,15 +55,24 @@ export class FirebaseService {
 
   }
 
-  // actualizarUsuario(user: any) {
-  //   const auth = getAuth(); // Obtén la instancia de autenticación
-  //   if (!auth.currentUser) {
-  //     throw new Error('No hay un usuario autenticado.');
-  //   }
-  //   return updateProfile(auth.currentUser, user);
-  // }
-  
+// ======================== Firestore (Base de datos) ========================
 
+getSubColleccion(path: string, subcollectionName: string) {
+  return this.firestore.doc(path).collection(subcollectionName).valueChanges({ idFiel: 'id'})
+}
+
+addToSubCollection(path: string, subcollectionName: string, object: any) {
+  return this.firestore
+    .doc(path)
+    .collection(subcollectionName)
+    .add({
+      ...object,
+      createdAt: new Date(), // Marca de tiempo para ordenar
+    });
+}
+
+
+// ======================== Almacenamiento  ========================
 
 
 }

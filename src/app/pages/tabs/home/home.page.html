@@ -1,3 +1,27 @@
-<ion-content >
-  <app-muro-comunidad></app-muro-comunidad>
- </ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Muro de Comunidad</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content class="ion-padding-bottom infinite-scroll-content">
+      <div class="scrollable-section">
+        <!-- Mensaje cuando no hay items -->
+        <ion-text *ngIf="items.length === 0" color="medium">
+          <h6 class="ion-text-center">No hay publicaciones disponibles.</h6>
+        </ion-text>
+  
+        <!-- Lista dinámica de publicaciones -->
+        <ion-list ngif="!loading && items.length" *ngIf="items.length > 0">
+          <ion-item *ngFor="let item of items; let i = index">
+  
+            <ion-label>
+              <h2>{{ item.tittle }}</h2> <!-- Ajuste de la propiedad correcta -->
+              <p>{{ item.descripcion }}</p>
+              <small>{{ item.fecha | date: 'fullDate' }}</small>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-card-content>
+

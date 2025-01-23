@@ -1,0 +1,58 @@
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Agregar/Actualizar Item</ion-title>
+      <ion-buttons>
+        <ion-button *ngIf="isModal" (click)="closeModal()" slot="start">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="d-flex-center">
+    <form class="auth-form"class="ion-padding  ion-text-center" [formGroup]="formItem" (ngSubmit)="submit()">
+      <div class="gradient-input">
+        <ion-label>Título</ion-label>
+        <ion-input
+          formControlName="tittle"
+          type="text"
+          placeholder="Recordatorio: Día de mantenimiento"
+        ></ion-input>
+        <div class="validators" *ngIf="formItem.controls.tittle.errors && formItem.controls.tittle.touched">
+          <div *ngIf="formItem.controls.tittle.errors?.['required']">El título es requerido</div>
+        </div>
+      </div>
+
+      <div class="gradient-input">
+        <ion-label>Descripción</ion-label>
+        <ion-textarea
+          formControlName="descripcion"
+          placeholder="Descripción..."
+        ></ion-textarea>
+        <div
+          class="validators"
+          *ngIf="formItem.controls.descripcion.errors && formItem.controls.descripcion.touched"
+        >
+          <div *ngIf="formItem.controls.descripcion.errors?.['required']">La descripción es requerida</div>
+        </div>
+      </div>
+
+      <div class="gradient-input">
+        <ion-label>Fecha</ion-label>
+        <ion-input
+          formControlName="fecha"
+          type="date"
+        ></ion-input>
+        <div class="validators" *ngIf="formItem.controls.fecha.errors && formItem.controls.fecha.touched">
+          <div *ngIf="formItem.controls.fecha.errors?.['required']">La fecha es requerida</div>
+          <div *ngIf="formItem.controls.fecha.errors?.['pastDate']">La fecha debe ser a partir de hoy</div>
+        </div>
+      </div>
+
+      <ion-button shape="round" type="submit" color="primary" [disabled]="formItem.invalid">
+        Subir aviso
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

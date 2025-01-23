@@ -1,13 +1,9 @@
-
 <ion-content>
   <div class="d-flex-center">
     <form class="auth-form" [formGroup]="form" (keypress.enter)="submit()">
       <div class="gradient-input">
         <ion-label>email</ion-label>
-        <ion-input
-          formControlName="email"
-          type="email"  
-          placeholder="jhondoe@gmail.com">
+        <ion-input formControlName="email" type="email" placeholder="jhondoe@gmail.com">
         </ion-input>
 
         <div class="validators" *ngIf="form.controls.email.errors && form.controls.email.touched">
@@ -20,7 +16,7 @@
         <ion-input formControlName="password" type="password" placeholder="********"></ion-input>
       </div>
 
-  
+
       <div class="gradient-input">
         <ion-label>Nombre</ion-label>
         <ion-input formControlName="nombre" type="text" placeholder="Juan Pérez"></ion-input>
@@ -29,9 +25,9 @@
           <div *ngIf="form.controls.nombre.errors?.['required']">El nombre es requerido</div>
           <div *ngIf="form.controls.nombre.errors?.['nombre']">El nombre es requerido</div>
         </div>
-        
+
       </div>
-  
+
       <div class="gradient-input">
         <ion-label>RUT</ion-label>
         <ion-input formControlName="rut" type="text" placeholder="12.345.678-9"></ion-input>
@@ -40,7 +36,7 @@
           <div *ngIf="form.controls.rut.errors?.['rut']">El rut es requerido</div>
         </div>
       </div>
-  
+
       <div class="gradient-input">
         <ion-label>Teléfono</ion-label>
         <ion-input formControlName="telefono" type="tel" placeholder="+56912345678"></ion-input>
@@ -49,7 +45,7 @@
           <div *ngIf="form.controls.telefono.errors?.['telefono']">El telefono es requerido</div>
         </div>
       </div>
-  
+
       <div class="gradient-input">
         <ion-label>Departamento</ion-label>
         <ion-input formControlName="departamento" type="number" placeholder="Dpto 101"></ion-input>
@@ -58,35 +54,35 @@
           <div *ngIf="form.controls.departamento.errors?.['departamento']">El departamento es requerido</div>
         </div>
       </div>
-  
+
       <div class="gradient-input">
         <ion-label>Piso</ion-label>
-        <ion-input formControlName="piso"type="number" placeholder="1"></ion-input>
+        <ion-input formControlName="piso" type="number" placeholder="1"></ion-input>
 
         <div class="validators" *ngIf="form.controls.piso.errors && form.controls.piso.touched">
           <div *ngIf="form.controls.piso.errors?.['required']">El piso es requerido</div>
           <div *ngIf="form.controls.piso.errors?.['piso']">El piso es requerido</div>
         </div>
       </div>
-  
+
       <div class="gradient-input">
         <ion-label>Rol</ion-label>
         <ion-select formControlName="rol" placeholder="Selecciona un rol">
           <ion-select-option value="propietario">Propietario</ion-select-option>
           <ion-select-option value="arendatario">Arrendatario</ion-select-option>
-          
+
           <div class="validators" *ngIf="form.controls.rol.errors && form.controls.rol.touched">
             <div *ngIf="form.controls.rol.errors?.['required']">El rol es requerido</div>
             <div *ngIf="form.controls.rol.errors?.['rol']">El rol es requerido</div>
           </div>
         </ion-select>
       </div>
-  
-      <ion-button ic shape="round" (click)="registrarResidente()" class="submit"  type="submit" color="primary" [disabled]="form.invalid">
+
+      <ion-button ic shape="round" (click)="registrarResidente()" class="submit" type="submit" color="primary"
+        [disabled]="form.invalid">
         Añadir Residente
       </ion-button>
     </form>
   </div>
-  
+
 </ion-content>
-    

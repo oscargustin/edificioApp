@@ -1,4 +1,6 @@
-<app-header></app-header>
+<app-header>
+
+</app-header>
 
 <ion-content class="ion-padding" >
 
@@ -17,7 +19,11 @@
   <!-- Renderiza los componentes dinámicamente -->
   <ng-container *ngIf="selectedTab === 'muro'">
     <app-muro-comunidad></app-muro-comunidad>
+    <ion-button  (click)="addOrUpdateItem() " >
+      Agregar Item
+    </ion-button>
   </ng-container>
+
   <ng-container *ngIf="selectedTab === 'pagos'">
 <app-historico-admin></app-historico-admin>
   </ng-container>
@@ -29,3 +35,4 @@
 
 
 </ion-content>
+<!-- AGREGAR COMPONENTE O EDITAR LÓGICA PARA PODER AGREGAR EL FORMULARIO DE AÑADIR NOTICIA Y VISUALIZARLO JUNTO CON EL APP-MUROCOM -->

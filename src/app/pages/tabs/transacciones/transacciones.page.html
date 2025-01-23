@@ -1,6 +1,15 @@
 <ion-header class="ion-no-border" >
   <ion-toolbar>
     <ion-title color="primary" mode="ios">Transacciones</ion-title>
+
+    <ion-buttons >
+      <ion-button  (click)="modalPagos() " >
+        Agregar Item
+      </ion-button>
+      <ion-button *ngIf="isModal" (click)="closeModal()" slot="start">
+      </ion-button>    
+    </ion-buttons>
+      
   </ion-toolbar>
   <ion-toolbar>
     <ion-segment mode="ios" [value]="segmentValue" (ionChange)="segmentChanged($event)">
@@ -15,32 +24,44 @@
 </ion-header>
 
 <ion-content >
+
+
+  
   <ion-card>
     <ion-card-content class="infinite-scroll-content" class="ion-no-padding">
       <div class="scrollable-section">
-        <ion-list class="transactions" *ngIf="transactions.length > 0">
+        <ion-list class="transactions" *ngIf="pago.length > 0">
           <ion-item-group>
-            <ion-item lines="full" *ngFor="let transaction of transactions">
+            <ion-item lines="full" *ngFor="let i of pago">
+              <!-- Ícono de la izquierda -->
               <ion-thumbnail slot="start" class="ion-text-center">
-                <img [src]="'/assets/imgs/' + (transaction?.amount >= 0 ? 'up-right.png' : 'down-left-arrow.png')" />
+                <img [src]="'/assets/imgs/' + (i.monto >= 0 ? 'up-right.png' : 'down-left-arrow.png')" />
               </ion-thumbnail>
+  
+              <!-- Contenido principal -->
               <ion-label>
-                <ion-text color="primary">{{ transaction?.to }}</ion-text>
+                <ion-text color="primary">{{ i.departamento }}</ion-text>
                 <p>
                   <ion-text>
-                    {{ transaction?.date | date: 'MMM d, y' }}
+                    {{ i.fechaPago | date: 'MMM d, y' }}
+                  </ion-text>
+                </p>
+                <p>
+                  <ion-text>
+                    {{ i.descripcion }}
                   </ion-text>
                 </p>
               </ion-label>
-              <!-- Cambia el color del texto según el monto -->
-              <ion-text 
-                slot="end" 
+  
+              <!-- Monto -->
+              <ion-text
+                slot="end"
                 [ngClass]="{
-                  'text-positive': transaction?.amount >= 0,
-                  'text-negative': transaction?.amount < 0
+                  'text-positive': i.monto >= 0,
+                  'text-negative': i.monto < 0
                 }"
               >
-                {{ transaction?.amount >= 0 ? '$' + transaction?.amount : '-$' + (transaction?.amount * -1) }}
+                {{ i.monto >= 0 ? '$' + i.monto : '-$' + (i.monto * -1) }}
               </ion-text>
             </ion-item>
           </ion-item-group>
@@ -48,5 +69,6 @@
       </div>
     </ion-card-content>
   </ion-card>
+  
   
 </ion-content>

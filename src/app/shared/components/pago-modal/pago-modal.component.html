@@ -1,0 +1,93 @@
+  <ion-content>
+    <ion-header>
+      <ion-toolbar >
+        <ion-title>Agregar/Actualizar Item</ion-title>
+        <ion-buttons>
+          <!-- Mostrar el botón de cierre solo si es un modal -->
+          <ion-button *ngIf="isModal" (click)="closeModal()" slot="start">
+            <ion-icon name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        
+      </ion-toolbar>
+    </ion-header>
+
+    <div class="d-flex-center">
+      <form class="auth-form" [formGroup]="formItem" (ngSubmit)="submit()">
+        <div class="gradient-input">
+          <ion-label>departamento</ion-label>
+          <ion-input
+            formControlName="departamento"
+            type="text"
+            placeholder="Juan Pérez"
+          ></ion-input>
+          <div class="validators" *ngIf="formItem.controls.departamento.errors && formItem.controls.departamento.touched">
+            <div *ngIf="formItem.controls.departamento.errors?.['required']">El departamento es requerido</div>
+          </div>
+        </div>
+
+        <div class="gradient-input">
+          <ion-label>monto</ion-label>
+          <ion-input
+            formControlName="monto"
+            type="text"
+            placeholder="Recordatorio: Día de mantenimiento"
+          ></ion-input>
+          <div class="validators" *ngIf="formItem.controls.monto.errors && formItem.controls.monto.touched">
+            <div *ngIf="formItem.controls.monto.errors?.['required']">El título es requerido</div>
+          </div>
+        </div>
+
+        <div class="gradient-input">
+          <ion-label>Fecha</ion-label>
+          <ion-input
+            formControlName="fechaPago"
+            type="date"
+          ></ion-input>
+          <div class="validators" *ngIf="formItem.controls.fechaPago.errors && formItem.controls.fechaPago.touched">
+            <div *ngIf="formItem.controls.fechaPago.errors?.['required']">La fecha del pago es requerida</div>
+            <div *ngIf="formItem.controls.fechaPago.errors?.['fechaFueraDeRango']">La fecha del pago debe estar dentro de los próximos 30 días.</div>
+          </div>
+        </div>
+
+        
+        <div class="gradient-input">
+          <ion-label>cuenta bancaria</ion-label>
+          <ion-input
+            formControlName="cntaBancaria"
+            type="text"
+            placeholder="Banco estado"
+          ></ion-input>
+          <div class="validators" *ngIf="formItem.controls.cntaBancaria.errors && formItem.controls.cntaBancaria.touched">
+            <div *ngIf="formItem.controls.cntaBancaria.errors?.['required']">El cuenta bancaria es requerido</div>
+          </div>
+        </div>
+
+        <div class="gradient-input">
+          <ion-label>Descripción</ion-label>
+          <ion-textarea
+            formControlName="descripcion"
+            placeholder="Descripción..."
+          ></ion-textarea>
+          <div
+            class="validators"
+            *ngIf="formItem.controls.descripcion.errors && formItem.controls.descripcion.touched"
+          >
+            <div *ngIf="formItem.controls.descripcion.errors?.['required']">La descripción es requerida</div>
+          </div>
+        </div>
+
+        
+
+
+      </form>
+    </div>
+
+    <ion-footer>
+   <div class="ion-text-center">
+    <ion-button class="ion-margin" mode="ios" (click)="submit()"  shape="round">
+      {{ pagos ? 'Generar Pago' : 'Guardar cambios'}}
+    </ion-button>
+   </div>
+    </ion-footer>
+  </ion-content>

@@ -7,6 +7,8 @@ import { HistoricoAdminComponent } from './components/historico-admin/historico-
 import { HeaderComponent } from './components/header/header.component';
 import { MuroComunidadComponent } from './components/muro-comunidad/muro-comunidad.component';
 import { AgregarResidenteComponent } from './components/agregar-residente/agregar-residente.component';
+import { AddUpdateItemComponent } from './components/add-update-item/add-update-item.component';
+import { PagoModalComponent } from './components/pago-modal/pago-modal.component';
 
 
 
@@ -15,6 +17,8 @@ import { AgregarResidenteComponent } from './components/agregar-residente/agrega
     HeaderComponent,
     MuroComunidadComponent,
     AgregarResidenteComponent,
+    AddUpdateItemComponent,
+    PagoModalComponent
     
   ],
   exports:[
@@ -23,7 +27,9 @@ import { AgregarResidenteComponent } from './components/agregar-residente/agrega
     MuroComunidadComponent,
     AgregarResidenteComponent,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    AddUpdateItemComponent,
+    PagoModalComponent
 
   ]
   ,

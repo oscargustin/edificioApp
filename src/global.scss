@@ -37,7 +37,7 @@
 @import "@ionic/angular/css/palettes/dark.system.css";
 
 ion-content, ion-toolbar{
-    --background: linear-gradient(to left, #0d0d0d, #001d2b);
+    --background: linear-gradient(to left, #0d0d0d, #053f5c);
   }
   
   ion-item{
@@ -112,4 +112,29 @@ ion-content, ion-toolbar{
       .auth-form {
           width: 500px;
       }
+
+      .agregar-editar-modal{
+        --height: 95%;
+        --border-radius: 20px;
+      }
+
+      @media screen and (max-width: 768px) {
+        .agregar-editar-modal{
+          --height: 95%;
+          --border-radius: 20px;
+        }
+        
+      }
+
+
+      .empty{
+        opacity: 30%;
+        text-align: center;
+
+        ion-icon{
+          font-size: 130px;
+        }
+      }
     }
+
+

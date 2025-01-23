@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent  implements OnInit {
 
-  constructor() { }
+  
+
+  constructor(private utilsSrv:UtilsService) { }
 
   ngOnInit() {}
+
+  
+  // logout() {
+  //   this.auth.signOut().then(() => {
+  //     this.utilsSrv.removeElementFromLocalStorage('user');
+  //     this.utilsSrv.routerLink('/login');
+  //   });
+  // }
+  
 
 }

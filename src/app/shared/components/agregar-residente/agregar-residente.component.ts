@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { UtilsService } from 'src/app/services/utils.service';
-import { User } from 'src/models/user.model';
+import { UserLogin,User } from 'src/models/user.model';
 
 
 @Component({
@@ -15,12 +15,8 @@ export class AgregarResidenteComponent  {
 submit() {
 throw new Error('Method not implemented.');
 }
-
-
-  // @Input() type!: string;
-  // @Input() control!: string;
-  // @Input() label!: string;
-
+user = {} as User;
+userLog= {} as UserLogin;
 
 form  = new FormGroup({
   email: new FormControl('',[Validators.email, Validators.required]),
@@ -33,7 +29,7 @@ form  = new FormGroup({
   rol: new FormControl('',[Validators.required]),
   
   })
-//LOGRAR QUE EL FORMULARIO GUARDE LOS DATOS Y ADEMÁS ME GENERE UN USUARIO CON CONTRASEÑA VÁLIDOS PARA INICIO DE SESIÓN DE LA APLICACIÓN
+
   isPassword!: boolean;
   hide: boolean = true;
 
@@ -44,12 +40,18 @@ form  = new FormGroup({
   ) { }
 
   ngOnInit() {
+    // this.user = this.utilsSrv.getElementFromLocalStorage('user')
+    // if(this.userLog){
+    //   this.form.setValue(this.userLog);
+    //   this.form.updateValueAndValidity()
+    // }
+    
 
   }
  
     registrarResidente() {
       if (this.form.valid) {
-        // this.utilsSrv.presentLoading({ message: 'Registrando...' });  
+         this.utilsSrv.presentLoading({ message: 'Registrando...' });  
         this.firebaseSrv.register(this.form.value as User).then(async res => {
           console.log('Usuario creado:', res);
 
@@ -94,36 +96,4 @@ form  = new FormGroup({
       }
   }
   }
-// {
-//   this.utilsSrv.presentToast({
-//     message: 'Por favor, completa todos los campos correctamente.',
-//     duration: 3000,
-//     color: 'warning',
-//     icon: 'alert-circle-outline',
-//   });
-// }
-    
-    //   if (this.form.valid) {
-    //     const formData = this.form.value;
-    //     this.firebaseSrv.addResidente(formData)
-    //       .then(() => {
-    //         console.log('Residente añadido con éxito');
-    //         console.log(FormData);
-    //       })
-    //       .catch((error) => {
-    //         console.error('Error al añadir residente:', error);
-    //       });
-    //   } else {
-    //     console.error('Formulario inválido');
-    //   }
-      
-
-
-
-  // mostrarEsconderContraseña()
-  // {
-  //   this.hide = !this.hide;
-  //   if (this.hide) this.type='password';
-  //   else this.type = 'text'
-  // }
 
