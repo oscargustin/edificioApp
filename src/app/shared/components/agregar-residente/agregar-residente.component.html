@@ -1,6 +1,6 @@
 <ion-content>
-  <div class="d-flex-center">
-    <form class="auth-form" [formGroup]="form" (keypress.enter)="submit()">
+
+    <form class="auth-form" [formGroup]="form" (keypress.enter)="registrarResidente()">
       <div class="gradient-input">
         <ion-label>email</ion-label>
         <ion-input formControlName="email" type="email" placeholder="jhondoe@gmail.com">
@@ -83,6 +83,6 @@
         Añadir Residente
       </ion-button>
     </form>
-  </div>
+
 
 </ion-content>

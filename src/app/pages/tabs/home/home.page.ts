@@ -24,43 +24,5 @@ export class HomePage implements OnInit {
   }
 
   
-  
-  ionViewWillEnter() {
-    this.getItems()
-  }
-
-  getItems() {
-    const user: User = this.utilsSrv.getElementFromLocalStorage('user'); // Obtener usuario autenticado
-    const path = `users/${user.uid}`; // Ruta para las publicaciones del usuario
-  
-      this.loading= true;
-    this.firebaseSrv.getSubColleccion(path, 'items').subscribe({
-      next: (res: Items[]) => {
-        console.log('Items obtenidos:', res);
-        this.items = res; 
-        this.loading= false;// Asignar los datos obtenidos a la lista de items
-      },
-      error: error => {
-        console.error('Error al obtener items:', error);
-        this.utilsSrv.presentToast({
-          message: 'Error al cargar publicaciones.',
-          color: 'danger',
-          duration: 2000,
-        });
-      },
-    });
-  }
-  
-
-  modalPago(item?: Items){
-      this.utilsSrv.presentModal({
-        component: 'AddUpdateItemComponent',
-        componentProps: {item,
-          isModal:true
-        },
-        cssClass: 'agregar-editar-modal'
-      })
-    }
-  
 
 }

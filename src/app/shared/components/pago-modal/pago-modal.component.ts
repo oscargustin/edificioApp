@@ -51,7 +51,7 @@ pagos: Pagos;
   }
 
   generarPago(){
-    let path = `users/${this.pagos.id}`;
+    let path = `residente/${this.pagos.id}`;
 
     this.utilsSrv.presentLoading();
     delete this.formItem.value.id;

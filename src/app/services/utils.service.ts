@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController, LoadingOptions, ModalController, ModalOptions, ToastController, ToastOptions } from '@ionic/angular';
+import { getAuth } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,12 @@ async presentLoading(opts?: LoadingOptions){
 
 async dismissLoading(){
   return await this.LoadingController.dismiss()
+}
+
+getCurrentUserUid(): string | null {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  return user ? user.uid : null; // Retorna el UID si el usuario está autenticado, de lo contrario null
 }
 
 

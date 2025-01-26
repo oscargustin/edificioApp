@@ -21,10 +21,9 @@ export class FirebaseService {
   register(user: User) {
     return this.auth.createUserWithEmailAndPassword(user.email, user.password).then(userCredential => {
       const uid = userCredential.user?.uid; // Obtén el UID del usuario
-      const usersCollection = this.firestore.collection('residentes'); // Define la colección
 
       // Agrega el usuario a Firestore
-      return usersCollection.doc(uid).set({
+      return this.firestore.collection(`residentes`).doc(uid).set({
         uid: uid,
         nombre: user.nombre,
         email: user.email,
@@ -57,19 +56,34 @@ export class FirebaseService {
 
 // ======================== Firestore (Base de datos) ========================
 
+generateId(): string {
+  return this.firestore.createId();
+}
+
+addDocument(path: string, data: any) {
+  return this.firestore.collection(path).add(data); // Agrega el documento con un ID autogenerado
+}
+
+getCollection(path: string) {
+  return this.firestore.collection(path).valueChanges({ idField: 'id' });
+}
+
+
+
 getSubColleccion(path: string, subcollectionName: string) {
   return this.firestore.doc(path).collection(subcollectionName).valueChanges({ idFiel: 'id'})
 }
 
-addToSubCollection(path: string, subcollectionName: string, object: any) {
-  return this.firestore
-    .doc(path)
-    .collection(subcollectionName)
-    .add({
-      ...object,
-      createdAt: new Date(), // Marca de tiempo para ordenar
-    });
+addToSubCollection(path: string, subCollection: string, data: any) {
+  const subCollectionPath = `${path}/${subCollection}/${data.id}`;
+  return this.firestore.doc(subCollectionPath).set(data);
 }
+
+
+getCollectionGroup(collectionGroup: string) {
+  return this.firestore.collectionGroup(collectionGroup).valueChanges();
+}
+
 
 
 // ======================== Almacenamiento  ========================

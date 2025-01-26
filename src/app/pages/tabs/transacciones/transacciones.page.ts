@@ -58,6 +58,8 @@ export class TransaccionesPage implements OnInit {
       this.utilsSrv.dismissModal();
     }}
 
+    
+
     getTransaccion(item?: Pagos){
     let user: User = this.utilsSrv.getElementFromLocalStorage('user')
     let path = `registroPagos/${user.uid}`

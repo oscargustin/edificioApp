@@ -18,6 +18,9 @@ export class LoginPage implements OnInit {
   password: new FormControl('',[ Validators.required])
 })
   utilSrc: any;
+
+
+  Usuarios: UserLogin[] = [];
  
   constructor(private firebaseSrv:FirebaseService,
     private utilsSrv: UtilsService
@@ -59,8 +62,8 @@ export class LoginPage implements OnInit {
           this.utilsSrv.routerLink('inicio-admin');
         } else {
           // Si no, redirigir al inicio normal
-          this.utilsSrv.routerLink('tabs/home');
-        }
+ this.utilsSrv.routerLink('tabs/home');
+         }
   
         this.utilsSrv.dismissLoading();
         this.form.reset();
