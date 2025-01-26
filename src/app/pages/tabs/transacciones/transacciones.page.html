@@ -2,24 +2,11 @@
   <ion-toolbar>
     <ion-title color="primary" mode="ios">Transacciones</ion-title>
 
-    <ion-buttons >
-      <ion-button  (click)="modalPagos() " >
-        Agregar Item
-      </ion-button>
-      <ion-button *ngIf="isModal" (click)="closeModal()" slot="start">
-      </ion-button>    
-    </ion-buttons>
+    
       
   </ion-toolbar>
   <ion-toolbar>
-    <ion-segment mode="ios" [value]="segmentValue" (ionChange)="segmentChanged($event)">
-      <ion-segment-button value="in">
-        <ion-label>Entrada</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="out">
-        <ion-label>Salida</ion-label>
-      </ion-segment-button>
-    </ion-segment>
+   
   </ion-toolbar>
 </ion-header>
 
@@ -68,7 +55,19 @@
         </ion-list>
       </div>
     </ion-card-content>
+
+
+
+    
   </ion-card>
   
-  
+  <ion-buttons class="d-flex-center">
+    <ion-button shape="full" expand="block" (click)="modalPagos() " >
+      Realizar pago
+    </ion-button>
+    <ion-button *ngIf="isModal" (click)="closeModal()" slot="start">
+    </ion-button>    
+  </ion-buttons>
+
+
 </ion-content>

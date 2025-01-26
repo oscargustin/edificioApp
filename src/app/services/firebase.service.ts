@@ -68,6 +68,15 @@ getCollection(path: string) {
   return this.firestore.collection(path).valueChanges({ idField: 'id' });
 }
 
+addToCollection(path: string, data: any) {
+  return this.firestore.collection(path).add(data);
+}
+
+updateDocument(path: string, data: any) {
+  return this.firestore.doc(path).update(data);
+}
+
+
 
 
 getSubColleccion(path: string, subcollectionName: string) {
@@ -80,13 +89,16 @@ addToSubCollection(path: string, subCollection: string, data: any) {
 }
 
 
+
+
 getCollectionGroup(collectionGroup: string) {
   return this.firestore.collectionGroup(collectionGroup).valueChanges();
 }
 
 
 
-// ======================== Almacenamiento  ========================
+// ======================== Deudas ========================
+
 
 
 }

@@ -9,6 +9,7 @@ import { MuroComunidadComponent } from './components/muro-comunidad/muro-comunid
 import { AgregarResidenteComponent } from './components/agregar-residente/agregar-residente.component';
 import { AddUpdateItemComponent } from './components/add-update-item/add-update-item.component';
 import { PagoModalComponent } from './components/pago-modal/pago-modal.component';
+import { DeudaComponent } from './components/deuda/deuda.component';
 
 
 
@@ -18,7 +19,8 @@ import { PagoModalComponent } from './components/pago-modal/pago-modal.component
     MuroComunidadComponent,
     AgregarResidenteComponent,
     AddUpdateItemComponent,
-    PagoModalComponent
+    PagoModalComponent,
+    DeudaComponent
     
   ],
   exports:[
@@ -29,8 +31,8 @@ import { PagoModalComponent } from './components/pago-modal/pago-modal.component
     ReactiveFormsModule,
     RouterModule,
     AddUpdateItemComponent,
-    PagoModalComponent
-
+    PagoModalComponent,
+    DeudaComponent
   ]
   ,
   imports: [

@@ -60,21 +60,29 @@ export class TransaccionesPage implements OnInit {
 
     
 
-    getTransaccion(item?: Pagos){
-    let user: User = this.utilsSrv.getElementFromLocalStorage('user')
-    let path = `registroPagos/${user.uid}`
-     console.log('Path generado:', path);
-
-    this.firebaseSrv.getSubColleccion(path, 'pagos').subscribe({
-      next: (res: Pagos[]) => {
-        console.log('pagos obtenidos:', res);
-        this.pago = res;
-      },
-      error: (error) => {
-        console.error('Error al obtener pagos:', error);
-      },
-    }); 
-  } 
+    getTransaccion(item?: Pagos) {
+      const user: User = this.utilsSrv.getElementFromLocalStorage('user');
+      console.log('Usuario recuperado:', user); // Revisa que los datos sean correctos
+    
+      if (!user || !user.uid) {
+        console.error('No se encontró un usuario autenticado.');
+        return;
+      }
+    
+      const path = `registroPagos/${user.uid}`;
+      console.log('Path generado:', path);
+    
+      this.firebaseSrv.getSubColleccion(path, 'pagos').subscribe({
+        next: (res: Pagos[]) => {
+          console.log('Pagos obtenidos:', res);
+          this.pago = res;
+        },
+        error: (error) => {
+          console.error('Error al obtener pagos:', error);
+        },
+      });
+    }
+    
 
   
 
