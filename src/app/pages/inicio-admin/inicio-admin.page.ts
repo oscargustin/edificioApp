@@ -23,17 +23,7 @@ export class InicioAdminPage implements OnInit {
 
 
   ngOnInit() {
-        //  let user: User = this.utilSrc.getElementFromLocalStorage('user')
-        //  let path = `users/${user.uid}`
-     
-        //  this.firebaseSrv.getSubColleccion(path, 'items').subscribe({
-        //    next: (res: Items[]) => {
-        //      console.log('Items obtenidos:', res);
-        //    },
-        //    error: (error) => {
-        //      console.error('Error al obtener items:', error);
-        //    },
-        //  });
+
        }
 
   

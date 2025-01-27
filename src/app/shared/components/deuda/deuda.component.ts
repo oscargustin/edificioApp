@@ -17,9 +17,9 @@ export class DeudaComponent implements OnInit {
   constructor(private firebaseService: FirebaseService) {}
 
   ngOnInit() {
-    this.obtenerUsuarios();
-    this.obtenerDeudas();
-    this.inicializarFormulario();
+    // this.obtenerUsuarios();
+    // this.obtenerDeudas();
+    // this.inicializarFormulario();
   }
 
   inicializarFormulario() {

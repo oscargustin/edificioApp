@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
@@ -10,17 +11,16 @@ export class HeaderComponent  implements OnInit {
 
   
 
-  constructor(private utilsSrv:UtilsService) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {}
 
   
-  // logout() {
-  //   this.auth.signOut().then(() => {
-  //     this.utilsSrv.removeElementFromLocalStorage('user');
-  //     this.utilsSrv.routerLink('/login');
-  //   });
-  // }
+  logout() {
+    // Limpia el estado de la sesión (puedes borrar tokens, datos de usuario, etc.)
+    localStorage.removeItem('user'); // Por ejemplo, eliminamos el usuario de localStorage
+    this.router.navigate(['/login']); // Redirige al login
+  }
   
 
 }

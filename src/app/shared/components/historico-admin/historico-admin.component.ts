@@ -1,69 +1,78 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-historico-admin',
   templateUrl: './historico-admin.component.html',
   styleUrls: ['./historico-admin.component.scss'],
 })
-export class HistoricoAdminComponent  implements OnInit {
+export class HistoricoAdminComponent implements OnInit {
+  historialPagos: {
+    tituloUser: string;
+    descripcionUser: string;
+    fechaUser: string;
+    avatarUser: string;
+    seleccionado?: boolean;
+  }[] = [];
+  filteredPagos: any[] = [];
+  searchTerm: string = '';
 
-  historialPagos: { tituloUser: string; descripcionUser: string; fechaUser: string; avatarUser: string }[] = [];
+  constructor(private firebaseSrv: FirebaseService) {}
 
   ngOnInit() {
-    this.loadHistorialPagos();
+    this.loadPagos();
+  }
+
+  // Cargar pagos desde Firebase
+  async loadPagos() {
+    const path = 'pagoAdmin';  // Nueva colección para pagos generales
+    try {
+      // Obtener todos los pagos de la colección 'pagoAdmin'
+      const pagos = await this.firebaseSrv.getCollection(path).toPromise(); 
+      const allPayments: any[] = pagos.map((pago: any) => ({
+        uid: pago.id, // ID del documento
+        departamento: pago.departamento || 'N/A',
+        monto: pago.monto || 0,
+        cntaBancaria: pago.cntaBancaria || 'N/A',
+        descripcion: pago.descripcion || 'Sin descripción',
+        fecha: pago.fecha || 'Sin fecha',
+        seleccionado: false, // Para manejar selección
+      }));
+  
+      // Asignar los pagos cargados
+      this.historialPagos = allPayments;
+      this.filteredPagos = [...this.historialPagos];
+    } catch (error) {
+      console.error('Error al cargar pagos:', error);
+    }
   }
   
-  private loadHistorialPagos() {
-    this.historialPagos = [
-      {
-        tituloUser: 'Pago realizado: Gasto común de diciembre',
-        descripcionUser: 'Se registró el pago de $100.000 correspondiente al gasto común del mes de diciembre.',
-        fechaUser: '2024-12-28',
-        avatarUser: 'https://via.placeholder.com/80?text=GC'
-      },
-      {
-        tituloUser: 'Pago realizado: Uso de quincho',
-        descripcionUser: 'Se registró el pago de $50.000 correspondiente al arriendo del quincho el 15 de diciembre.',
-        fechaUser: '2024-12-16',
-        avatarUser: 'https://via.placeholder.com/80?text=Q'
-      },
-      {
-        tituloUser: 'Pago realizado: Gasto común de noviembre',
-        descripcionUser: 'Se registró el pago de $100.000 correspondiente al gasto común del mes de noviembre.',
-        fechaUser: '2024-11-25',
-        avatarUser: 'https://via.placeholder.com/80?text=GC'
-      },
-      {
-        tituloUser: 'Pago realizado: Gasto común de noviembre',
-        descripcionUser: 'Se registró el pago de $100.000 correspondiente al gasto común del mes de noviembre.',
-        fechaUser: '2024-11-25',
-        avatarUser: 'https://via.placeholder.com/80?text=GC'
-      },
-      {
-        tituloUser: 'Pago realizado: Gasto común de noviembre',
-        descripcionUser: 'Se registró el pago de $100.000 correspondiente al gasto común del mes de noviembre.',
-        fechaUser: '2024-11-25',
-        avatarUser: 'https://via.placeholder.com/80?text=GC'
-      },
-      {
-        tituloUser: 'Pago realizado: Gasto común de diciembre',
-        descripcionUser: 'Se registró el pago de $100.000 correspondiente al gasto común del mes de diciembre.',
-        fechaUser: '2024-12-28',
-        avatarUser: 'https://via.placeholder.com/80?text=GC'
-      },
-      {
-        tituloUser: 'Pago realizado: Gasto común de diciembre',
-        descripcionUser: 'Se registró el pago de $100.000 correspondiente al gasto común del mes de diciembre.',
-        fechaUser: '2024-12-28',
-        avatarUser: 'https://via.placeholder.com/80?text=GC'
-      },
-      {
-        tituloUser: 'Pago realizado: Gasto común de diciembre',
-        descripcionUser: 'Se registró el pago de $100.000 correspondiente al gasto común del mes de diciembre.',
-        fechaUser: '2024-12-28',
-        avatarUser: 'https://via.placeholder.com/80?text=GC'
-      },
-      
-    ];
+  
+
+  // Filtrar pagos según el término de búsqueda
+  filterPagos() {
+    const term = this.searchTerm.toLowerCase();
+    this.filteredPagos = this.historialPagos.filter(
+      (pago) =>
+        pago.tituloUser.toLowerCase().includes(term) ||
+        pago.descripcionUser.toLowerCase().includes(term) ||
+        pago.fechaUser.toLowerCase().includes(term)
+    );
+  }
+
+  // Publicar un nuevo pago
+  publicarPago() {
+    console.log('Funcionalidad de publicar pendiente.');
+  }
+
+  // Eliminar pagos seleccionados
+  eliminarSeleccionados() {
+    const seleccionados = this.historialPagos.filter((pago) => pago.seleccionado);
+    if (seleccionados.length > 0) {
+      console.log('Eliminando:', seleccionados);
+      // Aquí puedes implementar la eliminación en Firebase
+    } else {
+      console.warn('No hay pagos seleccionados para eliminar.');
+    }
   }
 }

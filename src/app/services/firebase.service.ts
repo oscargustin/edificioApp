@@ -88,6 +88,9 @@ addToSubCollection(path: string, subCollection: string, data: any) {
   return this.firestore.doc(subCollectionPath).set(data);
 }
 
+getPagos(path: string) {
+  return this.firestore.collection(path, (ref) => ref.orderBy('createdAt', 'desc')).valueChanges({ idField: 'id' });
+}
 
 
 

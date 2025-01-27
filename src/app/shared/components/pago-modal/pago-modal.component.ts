@@ -14,6 +14,7 @@ export class PagoModalComponent implements OnInit {
   @Input() isModal: boolean;
   pagos: Pagos;
   userId: string | null = null;
+  user:User;
 
   formItem = new FormGroup({
     departamento: new FormControl('', [Validators.required]),
@@ -54,52 +55,61 @@ export class PagoModalComponent implements OnInit {
       });
       return;
     }
-    this.generarPago();
+    this.agregarPago();
   }
 
-  generarPago() {
-    if (!this.userId) {
-      console.error('No se pudo obtener el ID del usuario logeado.');
-      this.utilsSrv.presentToast({
-        message: 'Error: No se encontró usuario logeado.',
-        color: 'danger',
-        icon: 'alert-circle-outline',
-        duration: 1500,
-      });
+  agregarPago() {
+    if (this.formItem.invalid) {
+      console.log('Formulario inválido:', this.formItem.errors);
       return;
     }
-
-    const path = `registroPagos/${this.userId}/pagos`; // Ruta basada en el usuario logeado
-    const data = {
-      ...this.formItem.value,
-      createdAt: new Date().toISOString(), // Fecha actual generada automáticamente
-    };
-
+  
+    const pago = this.formItem.value; // Datos del formulario
+    const pathUsuario = `registroPagos/${this.userId}/pagos`;
+    const pathPagoAdmin = 'pagoAdmin'; // Nueva colección para pagos generales
+  
     this.utilsSrv.presentLoading({ message: 'Guardando pago...' });
-    this.firebaseSrv.addToSubCollection(path, '', data).then(
-      (res) => {
-        console.log('Pago guardado exitosamente:', res);
-        this.utilsSrv.dismissModal({ success: true });
+  
+    // Guardar en la colección específica del usuario
+    this.firebaseSrv
+      .addDocument(pathUsuario, { ...pago })
+      .then(() => {
+        // También agregar en la colección "pagoAdmin"
+        this.firebaseSrv
+          .addDocument(pathPagoAdmin, { ...pago, uidUsuario: this.userId })
+          .then(() => {
+            this.utilsSrv.dismissLoading();
+            this.utilsSrv.presentToast({
+              message: 'Pago registrado exitosamente',
+              color: 'success',
+              icon: 'checkmark-circle-outline',
+              duration: 1500,
+            });
+            this.formItem.reset(); // Limpia el formulario
+            this.closeModal(); // Cierra el modal si es necesario
+          })
+          .catch((error) => {
+            console.error('Error al registrar pago en pagoAdmin:', error);
+            this.utilsSrv.presentToast({
+              message: 'Error al guardar en pagoAdmin. Inténtalo nuevamente.',
+              color: 'danger',
+              icon: 'alert-circle-outline',
+              duration: 1500,
+            });
+          });
+      })
+      .catch((error) => {
+        this.utilsSrv.dismissLoading();
+        console.error('Error al registrar pago:', error);
         this.utilsSrv.presentToast({
-          message: 'Pago realizado exitosamente',
-          color: 'success',
-          icon: 'checkmark-circle-outline',
-          duration: 1500,
-        });
-      },
-      (error) => {
-        console.error('Error al guardar el pago:', error);
-        this.utilsSrv.presentToast({
-          message: 'Error al guardar el pago.',
+          message: 'Error al registrar el pago. Inténtalo nuevamente.',
           color: 'danger',
           icon: 'alert-circle-outline',
           duration: 1500,
         });
-      }
-    ).finally(() => {
-      this.utilsSrv.dismissLoading();
-    });
+      });
   }
+  
 
   closeModal() {
     if (this.isModal) {

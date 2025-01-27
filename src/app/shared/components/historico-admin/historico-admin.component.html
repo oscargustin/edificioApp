@@ -1,39 +1,38 @@
-
 <ion-card>
   <ion-card-header>
     <ion-card-title>Historial de Pagos</ion-card-title>
-
     <ion-card-subtitle>
+      <ion-searchbar
+        placeholder="Buscar (título, descripción, fecha, UID)"
+        [(ngModel)]="searchTerm"
+        (ionInput)="filterPagos()"
+        debounce="250"
+      ></ion-searchbar>
 
-      <ion-searchbar placeholder="Buscar"  type="decimal" [debounce]="250" ></ion-searchbar>
+      <div class="button-group">
+        <ion-button shape="round" color="success">
+          <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+          buscar
+        </ion-button>
 
-    <ion-button  shape="round"color="success">
-      Publicar
-    </ion-button>
-    <ion-button shape="round" color="success">
-      Eliminar
-    </ion-button>
-  </ion-card-subtitle>
+      </div>
+    </ion-card-subtitle>
   </ion-card-header>
 
-
-  <ion-card-content class="infinite-scroll-content" class="ion-no-padding">
-    <div class="scrollable-section">
+  <ion-card-content class="ion-no-padding">
     <ion-list>
-      <!-- Lista dinámica de pagos -->
-      <ion-item *ngFor="let pago of historialPagos">
+      <ion-item *ngFor="let pago of filteredPagos">
         <ion-avatar slot="start">
           <img [src]="pago.avatarUser || 'https://via.placeholder.com/80'" alt="avatar" />
         </ion-avatar>
-
         <ion-label>
           <h2>{{ pago.tituloUser }}</h2>
           <p>{{ pago.descripcionUser }}</p>
           <small>{{ pago.fechaUser | date: 'fullDate' }}</small>
+          <small><strong>UID:</strong> {{ pago.uid }}</small>
         </ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="pago.seleccionado"></ion-checkbox>
       </ion-item>
     </ion-list>
-    </div>
   </ion-card-content>
 </ion-card>
-
